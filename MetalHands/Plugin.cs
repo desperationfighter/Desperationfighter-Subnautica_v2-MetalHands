@@ -6,12 +6,6 @@ using MetalHands.Managment;
 using Nautilus.Handlers;
 using System.Reflection;
 
-//Plugin.Logger.LogInfo("");
-//Plugin.Logger.LogDebug("");
-//Plugin.Logger.LogMessage("");
-//Plugin.Logger.LogError("");
-//Plugin.Logger.LogFatal("");
-
 namespace MetalHands
 {
     [BepInPlugin(PluginInfo.PLUGIN_GUID, PluginInfo.PLUGIN_NAME, PluginInfo.PLUGIN_VERSION)]
@@ -28,7 +22,7 @@ namespace MetalHands
             Logger = base.Logger;
 
             //Load Config and Ingame Menu
-            Config = OptionsPanelHandler.RegisterModOptions<IngameConfigMenu> ();
+            Config = OptionsPanelHandler.RegisterModOptions<IngameConfigMenu>();
 
             // Initialize custom prefabs
             InitializePrefabs();

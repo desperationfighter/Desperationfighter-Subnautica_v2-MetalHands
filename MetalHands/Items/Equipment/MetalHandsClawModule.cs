@@ -1,12 +1,9 @@
 ﻿using Nautilus.Assets;
 using Nautilus.Assets.Gadgets;
-using Nautilus.Assets.PrefabTemplates;
 using Nautilus.Crafting;
-using Nautilus.Extensions;
 using Nautilus.Utility;
 using System.IO;
 using System.Reflection;
-using UnityEngine;
 using static CraftData;
 
 namespace MetalHands.Items.Equipment
@@ -25,7 +22,6 @@ namespace MetalHands.Items.Equipment
         public static void Register()
         {
             var customPrefab = new CustomPrefab(Info);
-
             customPrefab.SetRecipe(GetBlueprintRecipe())
                 .WithFabricatorType(CraftTree.Type.SeamothUpgrades)
                 .WithStepsToFabricatorTab("ExosuitModules")
@@ -75,10 +71,5 @@ namespace MetalHands.Items.Equipment
                 };
             }
         }
-    }
-
-    public class MetalHandsClawModule
-    {
-
     }
 }

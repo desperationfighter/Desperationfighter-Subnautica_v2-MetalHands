@@ -1,8 +1,6 @@
 ﻿using Nautilus.Assets;
 using Nautilus.Assets.Gadgets;
-using Nautilus.Assets.PrefabTemplates;
 using Nautilus.Crafting;
-using Nautilus.Extensions;
 using Nautilus.Utility;
 using System.IO;
 using System.Reflection;
@@ -87,10 +85,5 @@ namespace MetalHands.Items.Equipment
                 };
             }
         }
-    }
-
-    public class MetalHandsMK1
-    {
-
     }
 }

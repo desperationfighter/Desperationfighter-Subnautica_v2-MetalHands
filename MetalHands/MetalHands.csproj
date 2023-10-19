@@ -3,6 +3,8 @@
   <PropertyGroup>
     <TargetFramework>net472</TargetFramework>
 	<AssemblyName>MetalHands</AssemblyName>
+	<BepInExPluginGuid>com.desperationfighter.$(AssemblyName)</BepInExPluginGuid>
+	<BepInExPluginName>$(AssemblyName)</BepInExPluginName>
     <Version>2.0.0.0</Version>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <LangVersion>11</LangVersion>

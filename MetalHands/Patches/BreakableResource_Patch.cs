@@ -8,8 +8,6 @@ using MetalHands.Items.Equipment;
 
 namespace MetalHands.Patches
 {
-    //Utils.GetLocalPlayerComp().GetInMechMode()
-
     [HarmonyPatch(typeof(BreakableResource))]
     [HarmonyPatch(nameof(BreakableResource.HitResource))]
     public static class BreakableResource_HitResource_Patch
@@ -78,22 +76,18 @@ namespace MetalHands.Patches
             bool flag = false;
             for (int i = 0; i < __instance.numChances; i++)
             {
-                Plugin.Logger.LogDebug("01-01 - start choose random ress");
                 AssetReferenceGameObject assetReferenceGameObject = __instance.ChooseRandomResource();
                 if (assetReferenceGameObject != null)
                 {
-                    Plugin.Logger.LogDebug("01-02 - Random Resouce is called");
                     if (Player.main.GetVehicle() is Exosuit exosuit)
                     {
                         var installedmodule = exosuit.modules.GetCount(MetalHandsClawModulePrefab.Info.TechType);
                         if (((installedmodule > 0) | (Plugin.Config.Config_fastcollect == true)) & exosuit.storageContainer.container.HasRoomFor(1, 1))
                         {
-                            Plugin.Logger.LogDebug("01-10 - Start AddToPrawn over randomress");
                             CoroutineHost.StartCoroutine(AddtoPrawn(__instance, exosuit, assetReferenceGameObject));
                         }
                         else
                         {
-                            Plugin.Logger.LogDebug("01-11 - Spawn original way randomress");
                             __instance.SpawnResourceFromPrefab(assetReferenceGameObject);
                         }
                     }
@@ -102,12 +96,10 @@ namespace MetalHands.Patches
                         Inventory inventory = Inventory.Get();
                         if (((Inventory.main.equipment.GetTechTypeInSlot("Gloves") == MetalHandsMK2Prefab.Info.TechType) | (Plugin.Config.Config_fastcollect == true)) & inventory.HasRoomFor(1, 1))
                         {
-                            Plugin.Logger.LogDebug("01-20 - Player has glove - randomress");
                             CoroutineHost.StartCoroutine(AddbrokenRestoPlayerInv(__instance, assetReferenceGameObject));
                         }
                         else
                         {
-                            Plugin.Logger.LogDebug("03-04 - Spawn original way - defaultress");
                             __instance.SpawnResourceFromPrefab(assetReferenceGameObject);
                         }
                     }
@@ -116,18 +108,15 @@ namespace MetalHands.Patches
             }
             if (!flag)
             {
-                Plugin.Logger.LogDebug("03-01 - default resouce is called");
                 if (Player.main.GetVehicle() is Exosuit exosuit)
                 {
                     var installedmodule = exosuit.modules.GetCount(MetalHandsClawModulePrefab.Info.TechType);
                     if (((installedmodule > 0) | (Plugin.Config.Config_fastcollect == true)) && exosuit.storageContainer.container.HasRoomFor(1, 1))
                     {
-                        Plugin.Logger.LogDebug("03-02 - Start AddToPrawn over defaultress");
                         CoroutineHost.StartCoroutine(AddtoPrawn(__instance, exosuit, __instance.defaultPrefabReference));
                     }
                     else
                     {
-                        Plugin.Logger.LogDebug("01-11 - Spawn original way randomress");
                         __instance.SpawnResourceFromPrefab(__instance.defaultPrefabReference);
                     }
                 }
@@ -136,12 +125,10 @@ namespace MetalHands.Patches
                     Inventory inventory = Inventory.Get();
                     if (((Inventory.main.equipment.GetTechTypeInSlot("Gloves") == MetalHandsMK2Prefab.Info.TechType) | (Plugin.Config.Config_fastcollect == true)) & inventory.HasRoomFor(1, 1))
                     {
-                        Plugin.Logger.LogDebug("03-03 - Player has glove - defaultress");
                         CoroutineHost.StartCoroutine(AddbrokenRestoPlayerInv(__instance, __instance.defaultPrefabReference));
                     }
                     else
                     {
-                        Plugin.Logger.LogDebug("03-04 - Spawn original way - defaultress");
                         __instance.SpawnResourceFromPrefab(__instance.defaultPrefabReference);
                     }
                 }
