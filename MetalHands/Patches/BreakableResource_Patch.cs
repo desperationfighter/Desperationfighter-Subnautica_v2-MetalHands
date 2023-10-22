@@ -24,7 +24,7 @@ namespace MetalHands.Patches
             if (__instance.hitsToBreak > 0)
             {
                 //check if user force fastbreak OR has one of the Glove's
-                if (Plugin.Config.Config_fastbreak == true | (Plugin.Config.Config_ModEnable == true && ((Inventory.main.equipment.GetTechTypeInSlot("Gloves") == MetalHandsMK1Prefab.Info.TechType) | (Inventory.main.equipment.GetTechTypeInSlot("Gloves") == MetalHandsMK2Prefab.Info.TechType))))
+                if (Plugin.ICMConfig.Config_fastbreak == true | (Plugin.ICMConfig.Config_ModEnable == true && ((Inventory.main.equipment.GetTechTypeInSlot("Gloves") == MetalHandsMK1Prefab.Info.TechType) | (Inventory.main.equipment.GetTechTypeInSlot("Gloves") == MetalHandsMK2Prefab.Info.TechType))))
                 {
                     __instance.hitsToBreak = 0;
                     __instance.BreakIntoResources();
@@ -82,7 +82,7 @@ namespace MetalHands.Patches
                     if (Player.main.GetVehicle() is Exosuit exosuit)
                     {
                         var installedmodule = exosuit.modules.GetCount(MetalHandsClawModulePrefab.Info.TechType);
-                        if (((installedmodule > 0) | (Plugin.Config.Config_fastcollect == true)) & exosuit.storageContainer.container.HasRoomFor(1, 1))
+                        if (((installedmodule > 0) | (Plugin.ICMConfig.Config_fastcollect == true)) & exosuit.storageContainer.container.HasRoomFor(1, 1))
                         {
                             CoroutineHost.StartCoroutine(AddtoPrawn(__instance, exosuit, assetReferenceGameObject));
                         }
@@ -94,7 +94,7 @@ namespace MetalHands.Patches
                     else
                     {
                         Inventory inventory = Inventory.Get();
-                        if (((Inventory.main.equipment.GetTechTypeInSlot("Gloves") == MetalHandsMK2Prefab.Info.TechType) | (Plugin.Config.Config_fastcollect == true)) & inventory.HasRoomFor(1, 1))
+                        if (((Inventory.main.equipment.GetTechTypeInSlot("Gloves") == MetalHandsMK2Prefab.Info.TechType) | (Plugin.ICMConfig.Config_fastcollect == true)) & inventory.HasRoomFor(1, 1))
                         {
                             CoroutineHost.StartCoroutine(AddbrokenRestoPlayerInv(__instance, assetReferenceGameObject));
                         }
@@ -111,7 +111,7 @@ namespace MetalHands.Patches
                 if (Player.main.GetVehicle() is Exosuit exosuit)
                 {
                     var installedmodule = exosuit.modules.GetCount(MetalHandsClawModulePrefab.Info.TechType);
-                    if (((installedmodule > 0) | (Plugin.Config.Config_fastcollect == true)) && exosuit.storageContainer.container.HasRoomFor(1, 1))
+                    if (((installedmodule > 0) | (Plugin.ICMConfig.Config_fastcollect == true)) && exosuit.storageContainer.container.HasRoomFor(1, 1))
                     {
                         CoroutineHost.StartCoroutine(AddtoPrawn(__instance, exosuit, __instance.defaultPrefabReference));
                     }
@@ -123,7 +123,7 @@ namespace MetalHands.Patches
                 else
                 {
                     Inventory inventory = Inventory.Get();
-                    if (((Inventory.main.equipment.GetTechTypeInSlot("Gloves") == MetalHandsMK2Prefab.Info.TechType) | (Plugin.Config.Config_fastcollect == true)) & inventory.HasRoomFor(1, 1))
+                    if (((Inventory.main.equipment.GetTechTypeInSlot("Gloves") == MetalHandsMK2Prefab.Info.TechType) | (Plugin.ICMConfig.Config_fastcollect == true)) & inventory.HasRoomFor(1, 1))
                     {
                         CoroutineHost.StartCoroutine(AddbrokenRestoPlayerInv(__instance, __instance.defaultPrefabReference));
                     }

@@ -56,7 +56,8 @@ namespace MetalHands.Items.Equipment
 
         public static RecipeData GetBlueprintRecipe()
         {
-            if (Plugin.Config.Config_Hardcore == false)
+            Plugin.ICMConfig.Load();
+            if (Plugin.ICMConfig.Config_Hardcore == false)
             {
                 return new RecipeData()
                 {

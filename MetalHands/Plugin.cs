@@ -14,7 +14,7 @@ namespace MetalHands
     {
         public new static ManualLogSource Logger { get; private set; }
         private static Assembly Assembly { get; } = Assembly.GetExecutingAssembly();
-        internal static IngameConfigMenu Config { get; private set; }
+        internal static IngameConfigMenu ICMConfig { get; private set; }
 
         private void Awake()
         {
@@ -22,7 +22,7 @@ namespace MetalHands
             Logger = base.Logger;
 
             //Load Config and Ingame Menu
-            Config = OptionsPanelHandler.RegisterModOptions<IngameConfigMenu>();
+            ICMConfig = OptionsPanelHandler.RegisterModOptions<IngameConfigMenu>();
 
             // Initialize custom prefabs
             InitializePrefabs();
