@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net472</TargetFramework>
@@ -16,6 +16,10 @@
     </RestoreAdditionalProjectSources>
 
     <Authors>Desperationfighter</Authors>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <Optimize>False</Optimize>
   </PropertyGroup>
 
   <ItemGroup>
@@ -64,6 +68,45 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="MetalHands.SNv2.Desperationfighter\Assets\MetalHandsClawModule.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="MetalHands.SNv2.Desperationfighter\Assets\MetalHandsMK1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="MetalHands.SNv2.Desperationfighter\Assets\MetalHandsMK2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="MetalHands.SNv2.Desperationfighter\Assets_alternative\Alternative_1_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="MetalHands.SNv2.Desperationfighter\Assets_alternative\Alternative_1_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="MetalHands.SNv2.Desperationfighter\Assets_alternative\Alternative_1_3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="MetalHands.SNv2.Desperationfighter\Assets_alternative\Alternative_2_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="MetalHands.SNv2.Desperationfighter\Assets_alternative\Alternative_2_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="MetalHands.SNv2.Desperationfighter\Assets_alternative\Alternative_2_3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="MetalHands.SNv2.Desperationfighter\Assets_alternative\MetalHandsClawModule_original.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="MetalHands.SNv2.Desperationfighter\Assets_alternative\MetalHandsMK1_original.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="MetalHands.SNv2.Desperationfighter\Assets_alternative\MetalHandsMK2_original.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="MetalHands.SNv2.Desperationfighter\Assets_alternative\Readme.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -129,4 +172,8 @@
       <Private>False</Private>
     </Reference>
   </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="set AssetFolder=$(ProjectName).SNv2.Desperationfighter&#xD;&#xA;set TargetdirAssetFolder=$(TargetDir)%25AssetFolder%25\&#xD;&#xA;copy /Y &quot;$(TargetPath)&quot; &quot;%25TargetdirAssetFolder%25$(TargetFileName)&quot;&#xD;&#xA;set ZipPath=$(TargetDir)%25AssetFolder%25.zip&#xD;&#xA;&quot;C:\Program Files\7-Zip\7z.exe&quot; a %25ZipPath%25 %25TargetdirAssetFolder%25 -aoa&#xD;&#xA;&#xD;&#xA;set Gamedir=C:\Program Files (x86)\Steam\steamapps\common\Subnautica\&#xD;&#xA;set BepInExPlugin=BepInEx\plugins\&#xD;&#xA;set BepInExPlugindir=%25Gamedir%25%25BepInExPlugin%25&#xD;&#xA;set BepInExMyMod=%25BepInExPlugindir%25%25AssetFolder%25\&#xD;&#xA;xcopy &quot;%25TargetdirAssetFolder%25&quot; &quot;%25BepInExMyMod%25&quot; /E /y" />
+  </Target>
 </Project>
